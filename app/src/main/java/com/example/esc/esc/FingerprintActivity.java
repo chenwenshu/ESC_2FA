@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.example.prince.cse;
+package com.example.esc.esc;
 
 import android.app.KeyguardManager;
 import android.content.Intent;
@@ -28,14 +28,11 @@ import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -76,8 +73,8 @@ public class FingerprintActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fingerprint);
-		Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+//		Toolbar toolbar = findViewById(R.id.toolbar);
+//		setSupportActionBar(toolbar);
 		
 		Intent intent = getIntent();
 		nameOfUser = intent.getStringExtra("nameOfUser");
@@ -183,11 +180,11 @@ public class FingerprintActivity extends AppCompatActivity {
 	
 	// Show confirmation, if fingerprint was used show crypto information.
 	private void showConfirmation(byte[] encrypted) {
-		findViewById(R.id.confirmation_message).setVisibility(View.VISIBLE);
+//		findViewById(R.id.confirmation_message).setVisibility(View.VISIBLE);
 		if (encrypted != null) {
-			TextView v = findViewById(R.id.encrypted_message);
-			v.setVisibility(View.VISIBLE);
-			v.setText(Base64.encodeToString(encrypted, 0 /* flags */));
+//			TextView v = findViewById(R.id.encrypted_message);
+//			v.setVisibility(View.VISIBLE);
+//			v.setText(Base64.encodeToString(encrypted, 0 /* flags */));
 			// TODO: move onto the next activity
 			Log.i(TAG, "showConfirmation: fingerprint");
 			Intent intent = new Intent(getApplicationContext(), MainPage.class);
@@ -289,8 +286,8 @@ public class FingerprintActivity extends AppCompatActivity {
 		
 		@Override
 		public void onClick(View view) {
-			findViewById(R.id.confirmation_message).setVisibility(View.GONE);
-			findViewById(R.id.encrypted_message).setVisibility(View.GONE);
+//			findViewById(R.id.confirmation_message).setVisibility(View.GONE);
+//			findViewById(R.id.encrypted_message).setVisibility(View.GONE);
 			
 			// Set up the crypto object for later. The object will be authenticated by use
 			// of the fingerprint.

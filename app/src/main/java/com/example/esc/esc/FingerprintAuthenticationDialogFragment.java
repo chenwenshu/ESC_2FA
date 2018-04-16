@@ -14,19 +14,15 @@
  * limitations under the License
  */
 
-package com.example.prince.cse;
+package com.example.esc.esc;
 
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -57,8 +53,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
     private FingerprintActivity mActivity;
 
     private InputMethodManager mInputMethodManager;
-    private SharedPreferences mSharedPreferences;
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +68,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
             Bundle savedInstanceState) {
         getDialog().setTitle(getString(R.string.sign_in));
         View v = inflater.inflate(R.layout.fingerprint_dialog_container, container, false);
-        mCancelButton = (Button) v.findViewById(R.id.cancel_button);
+        mCancelButton = v.findViewById(R.id.cancel_button);
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,26 +76,23 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
             }
         });
 
-        mSecondDialogButton = (Button) v.findViewById(R.id.second_dialog_button);
+        mSecondDialogButton = v.findViewById(R.id.second_dialog_button);
         mSecondDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mStage == Stage.FINGERPRINT) {
                     goToBackup();
-                } else {
-//                    verifyPassword();
-                }
+                }  //                    verifyPassword();
+    
             }
         });
         mFingerprintContent = v.findViewById(R.id.fingerprint_container);
         mBackupContent = v.findViewById(R.id.backup_container);
-        mPassword = (EditText) v.findViewById(R.id.password);
+        mPassword = v.findViewById(R.id.password);
 //        mPassword.setOnEditorActionListener(this);
-        mPasswordDescriptionTextView = (TextView) v.findViewById(R.id.password_description);
-        mUseFingerprintFutureCheckBox = (CheckBox)
-                v.findViewById(R.id.use_fingerprint_in_future_check);
-        mNewFingerprintEnrolledTextView = (TextView)
-                v.findViewById(R.id.new_fingerprint_enrolled_description);
+        mPasswordDescriptionTextView = v.findViewById(R.id.password_description);
+        mUseFingerprintFutureCheckBox = v.findViewById(R.id.use_fingerprint_in_future_check);
+        mNewFingerprintEnrolledTextView = v.findViewById(R.id.new_fingerprint_enrolled_description);
         mFingerprintUiHelper = new FingerprintUiHelper(
                 mActivity.getSystemService(FingerprintManager.class),
                 (ImageView) v.findViewById(R.id.fingerprint_icon),
@@ -109,7 +101,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
 
         // If fingerprint authentication is not available, switch immediately to the backup
         // (password) screen.
-        if (!mFingerprintUiHelper.isFingerprintAuthAvailable()) {
+        if (mFingerprintUiHelper.isFingerprintAuthUnavailable()) {
             goToBackup();
         }
         return v;
@@ -138,7 +130,6 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
         super.onAttach(context);
         mActivity = (FingerprintActivity) getActivity();
         mInputMethodManager = context.getSystemService(InputMethodManager.class);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     /**
@@ -190,7 +181,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
 //        dismiss();
 //    }
 
-    /**
+    /*
      * @return true if {@code password} is correct, false otherwise
      */
 //    private boolean checkPassword(String password) {

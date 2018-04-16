@@ -38,7 +38,8 @@
                 android:padding="16dp"
                 android:layout_marginTop="48dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/sutdlogo"/>
+                android:src="@drawable/sutdlogo"
+                android:contentDescription="@string/sutdlogo" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -54,7 +55,7 @@
                     android:background="@android:color/transparent"
                     android:drawablePadding="12dp"
                     android:padding="8dp"
-                    android:hint="Email Address"
+                    android:hint="@string/email_address"
                     android:textColorHint="#fff"
                     android:textColor="#FFFFFF"
                     android:maxLines="1"
@@ -89,7 +90,7 @@
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/icon_lock"
                     android:drawablePadding="12dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColor="#FFFFFF"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -100,7 +101,7 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
 
-                    tools:ignore="RtlHardcoded" />
+                    tools:ignore="InvalidImeActionId,RtlHardcoded" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -116,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textColor="#000"
-                android:text="Remember me "
+                android:text="@string/remember_me"
                 android:padding="8dp"/>
 
             <Button
@@ -124,28 +125,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_login"
-                android:text="Log In"
+                android:text="@string/log_in"
                 android:textColor="#00695c"
                 android:textAllCaps="false"
                 android:padding="16dp"
                 android:clickable="true"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:layout_marginTop="24dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:focusable="true" />
 
             <Button
                 android:id="@+id/sign_up_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_signup"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:textColor="#fff"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 android:layout_marginTop="16dp"
                 android:clickable="true"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                android:focusable="true" />
 
             <TextView
                 android:id="@+id/textView"
@@ -156,8 +159,9 @@
                 android:clickable="true"
                 android:padding="16dp"
                 android:layout_marginTop="10dp"
-                android:text="Forgot your Password?"
-                android:textColor="#000" />
+                android:text="@string/forgot_your_password"
+                android:textColor="#000"
+                android:focusable="true" />
 
         </LinearLayout>
     </ScrollView>

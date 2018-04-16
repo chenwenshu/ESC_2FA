@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.example.prince.cse;
+package com.example.esc.esc;
 
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.CancellationSignal;
@@ -48,15 +48,15 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
         mCallback = callback;
     }
 
-    public boolean isFingerprintAuthAvailable() {
+    public boolean isFingerprintAuthUnavailable() {
         // The line below prevents the false positive inspection from Android Studio
         // noinspection ResourceType
-        return mFingerprintManager.isHardwareDetected()
-                && mFingerprintManager.hasEnrolledFingerprints();
+        return !mFingerprintManager.isHardwareDetected()
+                || !mFingerprintManager.hasEnrolledFingerprints();
     }
 
     public void startListening(FingerprintManager.CryptoObject cryptoObject) {
-        if (!isFingerprintAuthAvailable()) {
+        if (isFingerprintAuthUnavailable()) {
             return;
         }
         mCancellationSignal = new CancellationSignal();

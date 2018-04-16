@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.prince.cse.MainPage">
+    tools:context="com.example.esc.esc.MainPage">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/sutd" />
+        app:srcCompat="@drawable/sutd"
+        android:contentDescription="@string/sutdlogo" />
 
     <TextView
         android:id="@+id/welcomeMessage"
@@ -21,7 +22,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
