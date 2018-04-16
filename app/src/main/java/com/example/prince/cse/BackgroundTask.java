@@ -1,5 +1,6 @@
 package com.example.prince.cse;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,7 +15,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -24,7 +24,8 @@ import java.net.URLEncoder;
 
 public class BackgroundTask extends AsyncTask<String, Void, String> {
 
-    Context context;
+    @SuppressLint("StaticFieldLeak")
+    private Context context;
     BackgroundTask(Context context) {
         this.context = context;
     }
@@ -37,8 +38,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
 
-        String registrationURL = "http://10.0.2.2/escdb/register.php";
-        String loginURL = "http://10.0.2.2/escdb/login.php";
+        String registrationURL = "http://10.12.176.163/escdb/register.php";
+        String loginURL = "http://10.12.176.163/escdb/login.php";
 
         String method = strings[0];
         if (method.equals("register")) {
@@ -103,11 +104,11 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
 
-                String response = "";
-                String line = "";
+                StringBuilder response = new StringBuilder();
+                String line;
 
                 while ((line = bufferedReader.readLine()) != null) {
-                    response = response + line;
+                    response.append(line);
                 }
 
                 bufferedReader.close();
@@ -115,7 +116,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
                 httpURLConnection.disconnect();
 
-                return response;
+                return response.toString();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -163,8 +164,9 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 Intent intent = new Intent(context,MainPage.class);
                 intent.putExtra("nameOfUser",result);
                 context.startActivity(intent);
-
-
+//                Intent intent = new Intent(context, FingerprintActivity.class);
+//                intent.putExtra("nameOfUser", result);
+//                context.startActivity(intent);
             }
 
         }

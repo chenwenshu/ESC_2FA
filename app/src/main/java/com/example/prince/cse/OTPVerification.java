@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +12,6 @@ import android.widget.Toast;
 
 import java.security.SecureRandom;
 import java.util.Random;
-import static android.Manifest.permission.SEND_SMS;
 
 /**
  * Created by doanthanh on 3/4/18.
@@ -39,9 +36,16 @@ public class OTPVerification extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_email);
-
-
-        String[] to = {"esc.kyc1@gmail.com"};
+    
+    
+    
+        Intent intent = getIntent();
+        fromWhere = intent.getStringExtra("fromWhere");
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
+        password = intent.getStringExtra("password");
+        
+        String[] to = {email};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
@@ -51,44 +55,36 @@ public class OTPVerification extends AppCompatActivity{
         try{
             startActivity(Intent.createChooser(emailIntent, "Sending Email..."));
 
-        } catch (ActivityNotFoundException ex){
+        } catch (ActivityNotFoundException ignored){
 
         }
 
 
-        inputOTP = (EditText) findViewById(R.id.verifiedOTP);
+        inputOTP = findViewById(R.id.verifiedOTP);
 
-        buttonVerify = (Button) findViewById(R.id.buttonVerify);
+        buttonVerify = findViewById(R.id.buttonVerify);
 
         buttonVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (inputOTP.getText().toString().equals(pin)){
-                    if (fromWhere.equals("register")) {
-                        attemptRegister();
-                    }
-                    else if (fromWhere.equals("login")) {
-                        attemptLogin();
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+                    switch (fromWhere){
+                        case "register":
+                            attemptRegister();
+                            break;
+                        case "login":
+                            attemptLogin();
+                            break;
+                        default:
+                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                            break;
                     }
                 } else {
                     inputOTP.setError("OTP does not match.");
                 }
             }
         });
-
-
-        Intent intent = getIntent();
-        fromWhere = intent.getStringExtra("fromWhere");
-        name = intent.getStringExtra("name");
-        email = intent.getStringExtra("email");
-        password = intent.getStringExtra("password");
-
-
-
     }
 
 

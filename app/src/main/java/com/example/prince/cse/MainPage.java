@@ -14,14 +14,14 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-        welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
+        welcomeMessage = findViewById(R.id.welcomeMessage);
         Typeface typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/nicefont.ttf");
         welcomeMessage.setTypeface(typeface);
 
         Intent intent = getIntent();
         String nameOfUser = intent.getStringExtra("nameOfUser");
 
-        welcomeMessage.setText("Welcome, "+nameOfUser);
+        welcomeMessage.setText(String.format("Welcome, %s", nameOfUser));
 
 
     }

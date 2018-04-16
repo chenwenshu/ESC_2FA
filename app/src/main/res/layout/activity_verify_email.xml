@@ -19,9 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/icon_lock"
+        android:drawableStart="@drawable/icon_lock"
         android:drawablePadding="12dp"
-        android:hint="Enter the OTP sent to your email"
+        android:hint="@string/enter_the_otp_sent_to_your_email"
         android:inputType="textPassword"
         android:maxLines="1"
         android:padding="8dp"
@@ -37,13 +37,14 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@drawable/background_login"
-        android:text="Verify"
+        android:text="@string/verify"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:textColor="#00695c"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:layout_marginTop="16dp"
         android:clickable="true"
-        android:layout_gravity="right" />
+        android:layout_gravity="end"
+        android:focusable="true" />
 
 </LinearLayout>
