@@ -1,13 +1,12 @@
-package com.example.prince.cse;
+package com.example.esc.esc;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by doanthanh on 2/4/18.
@@ -16,9 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class PasswordParaTest {
     private String password;
     private boolean valid;
-
-    private Register register;
-
+    
     public PasswordParaTest(boolean valid, String password){
         this.valid = valid;
         this.password = password;
@@ -52,7 +49,7 @@ public class PasswordParaTest {
 
     @Test
     public void testPassword(){
-        assertEquals(this.valid, register.isPasswordValid(password));
+        assertEquals(this.valid, Register.isPasswordValid(password));
     }
 
 }

@@ -89,7 +89,6 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
         mFingerprintContent = v.findViewById(R.id.fingerprint_container);
         mBackupContent = v.findViewById(R.id.backup_container);
         mPassword = v.findViewById(R.id.password);
-//        mPassword.setOnEditorActionListener(this);
         mPasswordDescriptionTextView = v.findViewById(R.id.password_description);
         mUseFingerprintFutureCheckBox = v.findViewById(R.id.use_fingerprint_in_future_check);
         mNewFingerprintEnrolledTextView = v.findViewById(R.id.new_fingerprint_enrolled_description);
@@ -156,38 +155,6 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
         mFingerprintUiHelper.stopListening();
     }
 
-    /*
-      Checks whether the current entered password is correct, and dismisses the the dialog and
-      let's the activity know about the result.
-     */
-//    private void verifyPassword() {
-//        if (!checkPassword(mPassword.getText().toString())) {
-//            return;
-//        }
-//        if (mStage == Stage.NEW_FINGERPRINT_ENROLLED) {
-//            SharedPreferences.Editor editor = mSharedPreferences.edit();
-//            editor.putBoolean(getString(R.string.use_fingerprint_to_authenticate_key),
-//                    mUseFingerprintFutureCheckBox.isChecked());
-//            editor.apply();
-//
-//            if (mUseFingerprintFutureCheckBox.isChecked()) {
-//                // Re-create the key so that fingerprints including new ones are validated.
-//                mActivity.createKey(FingerprintActivity.DEFAULT_KEY_NAME, true);
-//                mStage = Stage.FINGERPRINT;
-//            }
-//        }
-//        mPassword.setText("");
-//        mActivity.onPurchased(false /* without Fingerprint */, null);
-//        dismiss();
-//    }
-
-    /*
-     * @return true if {@code password} is correct, false otherwise
-     */
-//    private boolean checkPassword(String password) {
-//        // TODO: verify password with the server
-//        return password.length() > 0;
-//    }
 
     private final Runnable mShowKeyboardRunnable = new Runnable() {
         @Override
@@ -219,15 +186,6 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
                 break;
         }
     }
-
-//    @Override
-//    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//        if (actionId == EditorInfo.IME_ACTION_GO) {
-//            verifyPassword();
-//            return true;
-//        }
-//        return false;
-//    }
 
     @Override
     public void onAuthenticated() {

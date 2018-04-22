@@ -74,7 +74,7 @@ public class Register extends AppCompatActivity{
 		
 		
 		// Check for a valid full name.
-		if (TextUtils.isEmpty(name) || !isValidUsername(name){
+		if (TextUtils.isEmpty(name) || !isValidUsername(name)){
 			inputName.setError(getString(R.string.error_field_required));
 			focusView = inputName;
 			cancel = true;
@@ -93,13 +93,13 @@ public class Register extends AppCompatActivity{
 		
 		
 		// Check for a valid password, if the user entered one.
-		if (TextUtils.isEmpty(password) || isPasswordInvalid(password)){
+		if (TextUtils.isEmpty(password) || !isPasswordValid(password)){
 			inputPassword.setError(getString(R.string.error_invalid_password));
 			focusView = inputPassword;
 			cancel = true;
 		}
 		
-		if (TextUtils.isEmpty(confirmPassword) || isPasswordInvalid(confirmPassword)){
+		if (TextUtils.isEmpty(confirmPassword) || isPasswordValid(confirmPassword)){
 			inputConfirmPassword.setError(getString(R.string.error_invalid_password));
 			focusView = inputConfirmPassword;
 			cancel = true;
@@ -139,7 +139,7 @@ public class Register extends AppCompatActivity{
 	}
 		    
 	public static boolean isValidUsername(String name){
-        return ((name.length()>=5) && !(name.isEmpty()) && (name.length()<=15) && !Character.isDigit(name.charAt(0)) && name.matches("[A-Za-z0-9]+"));
+        return name.length() >= 5 && name.length() <= 15 && !Character.isDigit(name.charAt(0)) && name.matches("[A-Za-z0-9]+");
     }
 		    
 	public static boolean isEmailValid(String email) {

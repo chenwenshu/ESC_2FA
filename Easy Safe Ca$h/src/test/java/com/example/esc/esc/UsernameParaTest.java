@@ -1,4 +1,4 @@
-package com.example.prince.cse;
+package com.example.esc.esc;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,9 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class UsernameParaTest {
     private String username;
     private boolean valid;
-
-    private Register register;
-
+    
     public UsernameParaTest(boolean valid, String username){
         this.valid = valid;
         this.username = username;
@@ -47,7 +45,7 @@ public class UsernameParaTest {
 
     @Test
     public void testUsername(){
-        assertEquals(this.valid, register.isValidUsername(username));
+        assertEquals(this.valid, Register.isValidUsername(username));
     }
 
 }

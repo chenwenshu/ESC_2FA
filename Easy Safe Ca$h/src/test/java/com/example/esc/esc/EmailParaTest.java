@@ -1,16 +1,11 @@
-package com.example.prince.cse;
+package com.example.esc.esc;
 
-/**
- * Created by doanthanh on 15/3/18.
- */
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.ListResourceBundle;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,9 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class EmailParaTest {
     private String email;
     private boolean valid;
-
-    private LoginActivity loginActivity;
-
+    
     public EmailParaTest(boolean valid, String email){
         this.valid = valid;
         this.email = email;
@@ -48,7 +41,7 @@ public class EmailParaTest {
 
     @Test
     public void testEmail(){
-        assertEquals(this.valid, loginActivity.isEmailValid(email));
+        assertEquals(this.valid, LoginActivity.isEmailValid(email));
     }
 
 }
