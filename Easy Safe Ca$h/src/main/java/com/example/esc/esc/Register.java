@@ -74,7 +74,7 @@ public class Register extends AppCompatActivity{
 		
 		
 		// Check for a valid full name.
-		if (TextUtils.isEmpty(name) || !isValidusername(name){
+		if (TextUtils.isEmpty(name) || !isValidUsername(name){
 			inputName.setError(getString(R.string.error_field_required));
 			focusView = inputName;
 			cancel = true;
