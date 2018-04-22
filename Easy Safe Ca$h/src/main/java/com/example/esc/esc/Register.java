@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 
 public class Register extends AppCompatActivity{
@@ -74,7 +74,7 @@ public class Register extends AppCompatActivity{
 		
 		
 		// Check for a valid full name.
-		if (TextUtils.isEmpty(name)){
+		if (TextUtils.isEmpty(name) || !isValidusername(name){
 			inputName.setError(getString(R.string.error_field_required));
 			focusView = inputName;
 			cancel = true;
@@ -137,20 +137,26 @@ public class Register extends AppCompatActivity{
 			
 		}
 	}
+		    
+	public static boolean isValidUsername(String name){
+        return ((name.length()>=5) && !(name.isEmpty()) && (name.length()<=15) && !Character.isDigit(name.charAt(0)) && name.matches("[A-Za-z0-9]+"));
+    }
+		    
+	public static boolean isEmailValid(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
+    }
 	
-	private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-			Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
-					Pattern.CASE_INSENSITIVE);
 	
-	private boolean isEmailValid(String emailStr){
-		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-		return matcher.find();
-	}
-	
-	
-	private boolean isPasswordInvalid(String password){
-		return password.length() <= 4;
-	}
+	public static boolean isPasswordValid(String password) {
+        return ((password.length() >= 6) && (password.length()<=20) && (password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!()*^&+=])(?=\\S+$).{6,}$")));
+    }
 	
 	
 }
